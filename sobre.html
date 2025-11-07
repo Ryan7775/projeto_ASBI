@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sobre nós ASBI</title>
+  <style>
+    :root{
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --accent:#0066cc;
+      --muted:#6b7280;
+      --radius:14px;
+      --shadow: 0 6px 18px rgba(15,23,42,0.08);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:32px;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:28px;
+    }
+
+    header h1{margin:0; font-size:22px;}
+    header p{margin:0; color:var(--muted); font-size:14px}
+
+    .grid{
+      display:grid;
+      gap:20px;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    /* para telas médias/maiores */
+    @media(min-width:760px){
+      .grid{grid-template-columns: repeat(2, 1fr);} 
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .card h2{margin:0; font-size:18px}
+    .card p{margin:0; color:var(--muted)}
+
+    .team-list{
+      display:flex; gap:12px; flex-wrap:wrap;
+    }
+
+    .member{
+      display:flex; gap:12px; align-items:center;
+      background:#f8fafc; padding:8px; border-radius:10px; flex:1 1 40%;
+    }
+
+    .avatar{
+      width:56px; 
+      height:56px; 
+      border-radius:50%; /* Circular para imagens */
+      background:linear-gradient(135deg,#cfe9ff,#eef6ff);
+      display:inline-flex; 
+      align-items:center; 
+      justify-content:center; 
+      font-weight:700; 
+      color:var(--accent);
+      font-size:16px; 
+      flex:0 0 56px;
+      overflow: hidden; /* Para conter a imagem */
+      border: 2px solid var(--accent); /* Borda azul */
+      box-shadow: var(--shadow);
+    }
+
+    /* Estilo para imagens dentro do avatar */
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Mantém proporção e preenche o círculo */
+      object-position: center;
+    }
+
+    /* Fallback para quando não há imagem - mostra as iniciais */
+    .avatar.no-image {
+      background: linear-gradient(135deg,#cfe9ff,#eef6ff);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .cta{
+      display:inline-block; padding:10px 14px; background:var(--accent); color:white; text-decoration:none; border-radius:10px; font-weight:600;
+    }
+
+    footer{margin-top:20px; color:var(--muted); font-size:14px}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>O que é a ASBI</h1>
+        <p>Conheça quem somos e como trabalhamos — simples, direto e humano.</p>
+      </div>
+      <nav aria-label="Ações">
+        <a class="cta" href="#contato">Fale Conosco</a>
+        <a href="index.html">Voltar</a>
+      </nav>
+    </header>
+
+    <main class="grid">
+      <!-- Divisão 1: Nossa Missão -->
+      <section class="card" id="missao" aria-labelledby="missao-titulo">
+        <h2 id="missao-titulo">Nossa Missão</h2>
+        <p>
+         "Nossa missão é oferecer atendimento voluntário de saúde bucal para crianças, 
+         promovendo cuidado, prevenção e bem-estar desde a infância.
+        </p>
+      </section>
+
+      <!-- Divisão 2: Nossa Visão -->
+      <section class="card" id="historia" aria-labelledby="Visão-titulo">
+        <h2 id="Visão-titulo"> Nossa Visão</h2>
+        <p>
+          Ser referência nacional em projetos voluntários de odontopediatria, 
+          ampliando o acesso à saúde bucal e contribuindo para um futuro mais saudável e consciente.
+        </p>
+      </section>
+
+     <!-- Divisão 3: Nossos Valores -->
+      <section class="card" id="historia" aria-labelledby="Valores-titulo">
+        <h2 id="Valores-titulo"> Nossos Valores</h2>
+        <p>
+         *Solidariedade: atuar com empatia e compromisso social.
+
+* Responsabilidade: garantir segurança, ética e profissionalismo em cada atendimento.
+
+* Prevenção: incentivar hábitos saudáveis e a importância do cuidado contínuo com a saúde bucal.
+
+* Dedicação: empenho em transformar vidas através do sorriso.
+
+* Transparência: manter relações claras e de confiança com a comunidade e parceiros.
+        </p>
+      </section>
+
+      <!-- Divisão 4: Time -->
+      <section class="card" id="time" aria-labelledby="time-titulo">
+        <h2 id="time-titulo">Nossa Equipe</h2>
+        <p>Profissionais dedicados ao cuidado da saúde bucal infantil.</p>
+        <div class="team-list" role="list">
+          <div class="member" role="listitem">
+            <!-- Opção 1: Com imagem -->
+            <div class="avatar">
+              <img src="img/ryan.jpg" alt="Dr. Ryan de Lima" onerror="this.parentElement.innerHTML='DR'; this.parentElement.classList.add('no-image');">
+            </div>
+            <div>
+              <strong>Dr. Ryan de Lima</strong>
+              <div style="color:var(--muted); font-size:13px">Coordenador Geral</div>
+            </div>
+          </div>
+
+          <div class="member" role="listitem">
+            <!-- Opção 2: Com imagem -->
+            <div class="avatar">
+              <img src="images/dra-ana.jpg" alt="Dra. Ana" onerror="this.parentElement.innerHTML='DA'; this.parentElement.classList.add('no-image');">
+            </div>
+            <div>
+              <strong>Dra. Ana</strong>
+              <div style="color:var(--muted); font-size:13px">Odontopediatra</div>
+            </div>
+          </div>
+
+          <div class="member" role="listitem">
+            <!-- Opção 3: Com imagem -->
+            <div class="avatar">
+              <img src="images/dr-miguel.jpg" alt="Dr. Miguel" onerror="this.parentElement.innerHTML='DM'; this.parentElement.classList.add('no-image');">
+            </div>
+            <div>
+              <strong>Dr. Miguel</strong>
+              <div style="color:var(--muted); font-size:13px">Especialista em Prevenção</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Divisão 5: Contato -->
+      <section class="card" id="contato" aria-labelledby="contato-titulo">
+        <h2 id="contato-titulo">Contato</h2>
+        <p>Quer trabalhar com a gente ou tem uma ideia? Envie uma mensagem.</p>
+
+        <form action="#" onsubmit="event.preventDefault(); alert('Formulário enviado (exemplo)');" aria-label="Formulário de contato">
+          <div style="display:flex; gap:8px; flex-direction:column;">
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text" required placeholder="Seu nome" style="padding:10px; border-radius:8px; border:1px solid #e6e9ee;">
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="seu@email.com" style="padding:10px; border-radius:8px; border:1px solid #e6e9ee;">
+
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="4" required placeholder="Escreva sua mensagem" style="padding:10px; border-radius:8px; border:1px solid #e6e9ee;"></textarea>
+
+            <button type="submit" class="cta">Enviar</button>
+          </div>
+        </form>
+
+        <p style="margin-top:10px; color:var(--muted); font-size:13px">Telefone: (11) 9999-9999 · Endereço: São Paulo, SP</p>
+      </section>
+
+    </main>
+
+    <footer>
+      © <span id="ano"></span> ASBI - Associação de Saúde Bucal Infantil. Todos os direitos reservados.
+    </footer>
+  </div>
+
+  <script>
+    // atualiza ano no rodapé
+    document.getElementById('ano').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

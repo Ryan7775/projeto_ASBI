@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASBI - Associação de Saúde Bucal Infantil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Cores oficiais ASBI com gradientes */
+            --primary: #2ec6f7;           /* Azul principal ASBI */
+            --primary-dark: #1a9bd4;      /* Azul escuro */
+            --primary-light: #e6f8ff;     /* Azul claro */
+            --secondary: #7be141;         /* Verde ASBI */
+            --secondary-dark: #5cb82f;    /* Verde escuro */
+            --secondary-light: #f0fce6;   /* Verde claro */
+            --accent: #ff6fd8;            /* Rosa ASBI */
+            --accent-dark: #e855c2;       /* Rosa escuro */
+            --accent-light: #ffe6f7;      /* Rosa claro */
+            --warning: #ffe156;           /* Amarelo ASBI */
+            --warning-dark: #e5c940;      /* Amarelo escuro */
+            --warning-light: #fffaeb;     /* Amarelo claro */
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --bg: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(46, 198, 247, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(46, 198, 247, 0.15);
+            --radius: 16px;
+            
+            /* Gradientes oficiais ASBI */
+            --gradient-main: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            --gradient-blue: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            --gradient-green: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            --gradient-pink: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            --gradient-yellow: linear-gradient(135deg, var(--warning) 0%, var(--warning-dark) 100%);
+            --gradient-hero: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-light) 50%, var(--accent-light) 100%);
+            --gradient-section: linear-gradient(135deg, var(--secondary-light) 0%, var(--primary-light) 100%);
+            --gradient-footer: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--accent-dark) 100%);
+            --gradient-nav: linear-gradient(90deg, 
+                rgba(46, 198, 247, 0.95) 0%, 
+                rgba(123, 225, 65, 0.95) 25%, 
+                rgba(255, 111, 216, 0.95) 75%, 
+                rgba(255, 225, 86, 0.95) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+
+        /* Navigation com gradiente melhorado */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--gradient-nav);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(46, 198, 247, 0.3);
+            z-index: 1000;
+            padding: 0 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(46, 198, 247, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 85px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-logo img {
+            height: 55px;
+            width: auto;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3));
+        }
+
+        .nav-logo img:hover {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .logo-text {
+            font-weight: 900;
+            font-size: 2rem;
+            background: linear-gradient(45deg, #ffffff 0%, #f0fce6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.05rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-login a {
+            background: var(--gradient-yellow);
+            color: var(--primary-dark);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 225, 86, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-login a:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 225, 86, 0.5);
+            background: var(--gradient-pink);
+            color: white;
+        }
+
+        /* Mobile menu melhorado */
+        .mobile-menu-toggle {
+            display: none;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 0.7rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 85px;
+            left: 0;
+            right: 0;
+            background: var(--gradient-main);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            box-shadow: 0 8px 25px rgba(46, 198, 247, 0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        .mobile-nav.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 1.2rem;
+            text-decoration: none;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+        }
+
+        .mobile-nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(15px);
+        }
+
+        /* Hero Section melhorado */
+        .hero {
+            margin-top: 85px;
+            min-height: 95vh;
+            background: var(--gradient-hero);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -25%;
+            width: 700px;
+            height: 700px;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -20%;
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-pink);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            33% { transform: translateY(-40px) rotate(20deg) scale(1.1); }
+            66% { transform: translateY(20px) rotate(-15deg) scale(0.9); }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            text-shadow: 0 6px 12px rgba(46, 198, 247, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-weight: 500;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 8px 25px rgba(46, 198, 247, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-blue);
+            color: white;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary);
+            border: 3px solid var(--primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(46, 198, 247, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gradient-green);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        /* About Section melhorado */
+        .about {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 1) 0%, 
+                rgba(230, 248, 255, 0.6) 100%);
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 3.5rem;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2.5rem;
+            font-weight: 900;
+        }
+
+        .about-content p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.9;
+            font-size: 1.2rem;
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 3rem;
+        }
+
+        .about-features li {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(46, 198, 247, 0.05);
+            border-radius: 15px;
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .about-features li:hover {
+            background: rgba(46, 198, 247, 0.1);
+            transform: translateX(15px);
+        }
+
+        .about-features li::before {
+            content: '✓';
+            background: var(--gradient-green);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(123, 225, 65, 0.4);
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: 0 15px 40px rgba(46, 198, 247, 0.25);
+            border: 4px solid transparent;
+            background: var(--gradient-blue);
+            background-clip: padding-box;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Carousel Section melhorado */
+        .carousel-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 1) 0%, 
+                rgba(240, 252, 230, 0.8) 50%, 
+                rgba(230, 248, 255, 0.8) 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .carousel-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .carousel-main {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .carousel-side {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(46, 198, 247, 0.2);
+            transition: all 0.3s ease;
+            border: 4px solid transparent;
+            background: var(--gradient-blue);
+            background-clip: padding-box;
+        }
+
+        .carousel-side:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 45px rgba(46, 198, 247, 0.3);
+        }
+
+        .side-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-side:hover .side-img {
+            transform: scale(1.05);
+        }
+
+        .side-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--gradient-main);
+            color: white;
+            padding: 2.5rem 1.5rem 2rem;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .carousel {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(46, 198, 247, 0.25);
+            border: 5px solid transparent;
+            background: var(--gradient-main);
+            background-clip: padding-box;
+        }
+
+        .carousel-slide {
+            display: none;
+            position: relative;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel:hover .carousel-slide img {
+            transform: scale(1.02);
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--gradient-main);
+            color: white;
+            padding: 4rem 3rem 3rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: 4px solid var(--primary);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(46, 198, 247, 0.3);
+            z-index: 10;
+            color: var(--primary);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: var(--gradient-blue);
+            color: white;
+            transform: translateY(-50%) scale(1.2);
+            box-shadow: 0 12px 35px rgba(46, 198, 247, 0.5);
+        }
+
+        .carousel-btn.prev {
+            left: 2rem;
+        }
+
+        .carousel-btn.next {
+            right: 2rem;
+        }
+
+        /* Indicator dots para carousel */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        /* Features Section melhorado */
+        .features {
+            padding: 8rem 2rem;
+            background: var(--gradient-section);
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: 0 12px 35px rgba(46, 198, 247, 0.15);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            backdrop-filter: blur(15px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 45px rgba(46, 198, 247, 0.25);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2.5rem;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 25px rgba(46, 198, 247, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        .feature-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .feature-description {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.15rem;
+        }
+
+        /* Stats Section melhorado */
+        .stats {
+            padding: 8rem 2rem;
+            background: var(--gradient-footer);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.4;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            display: block;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 600;
+        }
+
+        /* Contact Section melhorado */
+        .contact {
+            padding: 8rem 2rem;
+            background: var(--gradient-section);
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 5rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: 0 12px 35px rgba(46, 198, 247, 0.15);
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 45px rgba(46, 198, 247, 0.25);
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-main);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 25px rgba(46, 198, 247, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        .contact-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .contact-info {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        /* Footer melhorado */
+        footer {
+            background: var(--gradient-footer);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1" fill="rgba(255,255,255,0.05)"/></svg>') repeat;
+            opacity: 0.6;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-logo {
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo img {
+            height: 80px;
+            filter: brightness(0) invert(1) drop-shadow(0 4px 12px rgba(255, 255, 255, 0.3));
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .footer-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .social-btn {
+            width: 65px;
+            height: 65px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.4rem;
+        }
+
+        .social-btn:hover {
+            background: var(--gradient-yellow);
+            transform: translateY(-5px) scale(1.15);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 25px rgba(255, 225, 86, 0.5);
+        }
+
+        .footer-copyright {
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            padding-top: 3rem;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design melhorado */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+                height: 75px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                margin-top: 75px;
+                padding: 2rem 1rem;
+                min-height: 85vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .carousel-main {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .carousel-side {
+                order: 2;
+            }
+
+            .carousel {
+                order: 1;
+            }
+
+            .side-img {
+                height: 220px;
+            }
+
+            .carousel-slide img {
+                height: 350px;
+            }
+
+            .carousel-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .carousel-btn.prev {
+                left: 1rem;
+            }
+
+            .carousel-btn.next {
+                right: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .about-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+        }
+
+        /* Animations melhoradas */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="img/LOGOASBI.png" alt="Logo ASBI"/>
+                <span class="logo-text">ASBI</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="nav-login">
+                <a href="login.php">
+                    <span>👤</span> Login
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#home">Home</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#contato">Contato</a>
+            <a href="login.php">Login</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content loading">
+            <h1>Cuidando do Sorriso das Crianças</h1>
+            <p class="hero-subtitle">
+                Promovemos saúde bucal infantil através de atendimento humanizado, 
+                educação e ações sociais transformadoras
+            </p>
+            <div class="hero-buttons">
+                <a href="#servicos" class="btn btn-primary">
+                    <span>🦷</span> Nossos Serviços
+                </a>
+                <a href="login.php" class="btn btn-secondary">
+                    <span>👤</span> Área do Cliente
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="about">
+        <div class="about-container loading">
+            <div class="about-content">
+                <h2>Sobre a ASBI</h2>
+                <p>
+                    A Associação de Saúde Bucal Infantil (ASBI) é uma organização dedicada 
+                    a promover a saúde bucal das crianças através de atendimento especializado, 
+                    programas educativos e ações sociais.
+                </p>
+                <p>
+                    Nossa missão é garantir que toda criança tenha acesso a cuidados 
+                    odontológicos de qualidade, independentemente de sua condição social ou econômica.
+                </p>
+                <ul class="about-features">
+                    <li>Atendimento odontológico especializado</li>
+                    <li>Programas de educação em saúde bucal</li>
+                    <li>Ações sociais em comunidades carentes</li>
+                    <li>Equipe de profissionais qualificados</li>
+                </ul>
+            </div>
+            <div class="about-image">
+                <img src="img/imagem1.jpg" alt="Sobre a ASBI">
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section class="carousel-section">
+        <div class="loading">
+            <h2 class="section-title">Nossa Missão em Ação</h2>
+            <p class="section-subtitle">
+                Veja como transformamos sorrisos e vidas através do nosso trabalho dedicado
+            </p>
+        </div>
+
+        <div class="carousel-container loading">
+            <div class="carousel-main">
+                <div class="carousel-side">
+                    <img src="img/imagem4.jpg" alt="Ação Social" class="side-img">
+                    <div class="side-caption">
+                        <strong>25 de Outubro</strong><br>
+                        Dia Nacional da Saúde Bucal
+                    </div>
+                </div>
+                
+                <div class="carousel">
+                    <div class="carousel-slide active">
+                        <img src="img/imagem1.jpg" alt="Crianças sorrindo">
+                        <div class="carousel-caption">Alegria das crianças atendidas</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/imagem2.jpg" alt="Dentista atendendo criança">
+                        <div class="carousel-caption">Cuidado odontológico com carinho</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/imagem3.jpg" alt="Equipe voluntária">
+                        <div class="carousel-caption">Equipe de voluntários dedicada</div>
+                    </div>
+                    <button class="carousel-btn prev" onclick="moveSlide(-1)">‹</button>
+                    <button class="carousel-btn next" onclick="moveSlide(1)">›</button>
+                    
+                    <!-- Indicators -->
+                    <div class="carousel-indicators">
+                        <div class="carousel-indicator active" onclick="currentSlideIndex(1)"></div>
+                        <div class="carousel-indicator" onclick="currentSlideIndex(2)"></div>
+                        <div class="carousel-indicator" onclick="currentSlideIndex(3)"></div>
+                    </div>
+                </div>
+                
+                <div class="carousel-side">
+                    <img src="img/imagem5.jpg" alt="Educação e saúde" class="side-img">
+                    <div class="side-caption">
+                        <strong>Saúde para Todos</strong><br>
+                        Educação e prevenção
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="servicos" class="features">
+        <div class="loading">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <p class="section-subtitle">
+                Oferecemos atendimento completo e humanizado para a saúde bucal infantil
+            </p>
+        </div>
+        
+        <div class="features-grid loading">
+            <div class="feature-card">
+                <div class="feature-icon">🦷</div>
+                <h3 class="feature-title">Atendimento Odontológico</h3>
+                <p class="feature-description">
+                    Consultas especializadas em odontopediatria com profissionais qualificados 
+                    e ambiente acolhedor para as crianças.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">Educação em Saúde</h3>
+                <p class="feature-description">
+                    Programas educativos sobre higiene bucal, prevenção e cuidados diários 
+                    para crianças e famílias.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3 class="feature-title">Ações Sociais</h3>
+                <p class="feature-description">
+                    Campanhas e projetos sociais levando atendimento odontológico 
+                    para comunidades carentes.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="loading">
+            <h2 class="section-title" style="color: white; margin-bottom: 3rem;">
+                Nossos Resultados
+            </h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="2500">0</span>
+                    <span class="stat-label">Crianças Atendidas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="150">0</span>
+                    <span class="stat-label">Voluntários Ativos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="50">0</span>
+                    <span class="stat-label">Projetos Realizados</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="8">0</span>
+                    <span class="stat-label">Anos de Atuação</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="contact">
+        <div class="contact-container loading">
+            <h2 class="section-title">Entre em Contato</h2>
+            <p class="section-subtitle">
+                Estamos aqui para ajudar e responder suas dúvidas sobre nossos serviços
+            </p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3 class="contact-title">E-mail</h3>
+                    <p class="contact-info">contato@asbi.org.br</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3 class="contact-title">Telefone</h3>
+                    <p class="contact-info">(11) 3333-4444</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3 class="contact-title">Endereço</h3>
+                    <p class="contact-info">Av. Paulista, 1000<br>São Paulo - SP</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="img/LOGOASBI.png" alt="Logo ASBI">
+            </div>
+            
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços</a>
+                <a href="login.php">Login</a>
+                <a href="#contato">Contato</a>
+            </div>
+            
+            <div class="footer-social">
+                <a href="#" class="social-btn">📘</a>
+                <a href="#" class="social-btn">📷</a>
+                <a href="#" class="social-btn">🐦</a>
+                <a href="#" class="social-btn">📺</a>
+            </div>
+            
+            <div class="footer-copyright">
+                <p>&copy; 2025 Associação de Saúde Bucal Infantil. Todos os direitos reservados.</p>
+                <p>Desenvolvido com ❤️ para transformar sorrisos</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // CAROUSEL FUNCTIONALITY - CORRIGIDO E SIMPLIFICADO
+        console.log('Iniciando carousel...');
+        
+        let currentSlide = 0;
+        let slideInterval;
+        
+        // Aguarda o DOM carregar completamente
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM carregado');
+            
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            const carousel = document.querySelector('.carousel');
+            
+            console.log('Slides encontrados:', slides.length);
+            console.log('Indicators encontrados:', indicators.length);
+            
+            if (slides.length === 0) {
+                console.error('Nenhum slide encontrado!');
+                return;
+            }
+            
+            function showSlide(index) {
+                console.log('Mostrando slide:', index);
+                
+                // Remove classe active de todos
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                // Normalize o índice
+                if (index >= slides.length) currentSlide = 0;
+                if (index < 0) currentSlide = slides.length - 1;
+                
+                // Adiciona classe active ao slide e indicador atual
+                if (slides[currentSlide]) {
+                    slides[currentSlide].classList.add('active');
+                    console.log('Slide ativo:', currentSlide);
+                }
+                
+                if (indicators[currentSlide]) {
+                    indicators[currentSlide].classList.add('active');
+                }
+            }
+            
+            // Função para mover slide
+            window.moveSlide = function(direction) {
+                console.log('Movendo slide:', direction);
+                currentSlide += direction;
+                showSlide(currentSlide);
+                restartAutoplay();
+            };
+            
+            // Função para ir direto para um slide
+            window.currentSlideIndex = function(index) {
+                console.log('Indo para slide:', index);
+                currentSlide = index - 1;
+                showSlide(currentSlide);
+                restartAutoplay();
+            };
+            
+            // Auto-play
+            function autoPlay() {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+            
+            function startAutoplay() {
+                slideInterval = setInterval(autoPlay, 4000);
+                console.log('Autoplay iniciado');
+            }
+            
+            function stopAutoplay() {
+                if (slideInterval) {
+                    clearInterval(slideInterval);
+                    console.log('Autoplay parado');
+                }
+            }
+            
+            function restartAutoplay() {
+                stopAutoplay();
+                startAutoplay();
+            }
+            
+            // Event listeners para pause/resume no hover
+            if (carousel) {
+                carousel.addEventListener('mouseenter', stopAutoplay);
+                carousel.addEventListener('mouseleave', startAutoplay);
+            }
+            
+            // Controles de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    moveSlide(-1);
+                } else if (e.key === 'ArrowRight') {
+                    moveSlide(1);
+                }
+            });
+            
+            // Touch/swipe para mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            if (carousel) {
+                carousel.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+                
+                carousel.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                });
+            }
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    moveSlide(1); // Swipe left - próximo
+                }
+                if (touchEndX > touchStartX + swipeThreshold) {
+                    moveSlide(-1); // Swipe right - anterior
+                }
+            }
+            
+            // Inicializa o carousel
+            showSlide(0);
+            startAutoplay();
+            
+            console.log('Carousel inicializado com sucesso!');
+        });
+        
+        // MOBILE MENU
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            if (mobileNav) {
+                mobileNav.classList.toggle('active');
+            }
+        }
+        
+        // SMOOTH SCROLLING
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                    
+                    // Fecha menu mobile se estiver aberto
+                    const mobileNav = document.getElementById('mobileNav');
+                    if (mobileNav) {
+                        mobileNav.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // NAVIGATION ATIVA
+        function setActiveNav() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', setActiveNav);
+        
+        // COUNTER ANIMATION
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // 2 segundos
+                const steps = 60;
+                const increment = target / steps;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current);
+                    }
+                }, duration / steps);
+            });
+        }
+        
+        // INTERSECTION OBSERVER
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                    
+                    // Inicia animação dos counters quando a seção stats é visível
+                    if (entry.target.closest('.stats')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observa elementos com classe loading
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.loading').forEach(el => {
+                observer.observe(el);
+            });
+        });
+        
+        // NAVBAR SCROLL EFFECT
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (nav) {
+                if (window.scrollY > 50) {
+                    nav.style.background = 'linear-gradient(90deg, rgba(46, 198, 247, 0.98) 0%, rgba(123, 225, 65, 0.98) 25%, rgba(255, 111, 216, 0.98) 75%, rgba(255, 225, 86, 0.98) 100%)';
+                    nav.style.boxShadow = '0 12px 35px rgba(46, 198, 247, 0.3)';
+                } else {
+                    nav.style.background = 'linear-gradient(90deg, rgba(46, 198, 247, 0.95) 0%, rgba(123, 225, 65, 0.95) 25%, rgba(255, 111, 216, 0.95) 75%, rgba(255, 225, 86, 0.95) 100%)';
+                    nav.style.boxShadow = '0 8px 25px rgba(46, 198, 247, 0.2)';
+                }
+            }
+        });
+        
+        // LOADING ANIMATIONS
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.querySelectorAll('.loading').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                    }, index * 100);
+                });
+            }, 200);
+        });
+        
+        // FECHAR MENU MOBILE AO CLICAR FORA
+        document.addEventListener('click', function(e) {
+            const mobileNav = document.getElementById('mobileNav');
+            const toggleBtn = document.querySelector('.mobile-menu-toggle');
+            
+            if (mobileNav && toggleBtn) {
+                if (!mobileNav.contains(e.target) && !toggleBtn.contains(e.target)) {
+                    mobileNav.classList.remove('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
